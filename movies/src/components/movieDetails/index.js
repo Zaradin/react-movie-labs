@@ -29,11 +29,9 @@ const MovieDetails = ({ movie }) => {
       <Typography variant="h5" component="h3">
         Overview
       </Typography>
-
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
-
       <Paper component="ul" sx={{ ...root }}>
         <li>
           <Chip label="Genres" sx={{ ...chip }} color="primary" />
@@ -55,6 +53,16 @@ const MovieDetails = ({ movie }) => {
           label={`${movie.vote_average} (${movie.vote_count}`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
+      <Paper component="ul" sx={{ ...root }}>
+        <li>
+          <Chip label="Production" sx={{ ...chip }} color="primary" />
+        </li>
+        {movie.production_countries.map((country) => (
+          <li key={country.name}>
+            <Chip label={country.name} sx={{ ...chip }} />
+          </li>
+        ))}
       </Paper>
       <Fab
         color="secondary"
