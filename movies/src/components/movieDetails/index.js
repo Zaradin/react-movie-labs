@@ -93,7 +93,12 @@ const MovieDetails = ({ movie, cast }) => {
             <Grid2 container spacing={2}>
                 {cast.map((actor) => (
                     <Grid2 item xs={6} sm={4} md={3} lg={2} key={actor.id}>
-                        <ActorCard actor={actor} />
+                        <Link
+                            to={`/actor/${actor.id}`}
+                            style={{ textDecoration: "none" }}
+                        >
+                            <ActorCard actor={actor} />
+                        </Link>
                     </Grid2>
                 ))}
             </Grid2>
