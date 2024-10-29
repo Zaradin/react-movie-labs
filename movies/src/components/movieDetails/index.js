@@ -9,8 +9,9 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
-import ActorCard from "../ActorCard";
+import ActorCard from "../actorCard";
 import Grid2 from "@mui/material/Grid2";
+import { Link } from "react-router-dom";
 
 const root = {
     display: "flex",
