@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getActorDetails } from "../api/tmdb-api";
+import { getActorMovieCredits } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -19,7 +20,12 @@ const ActorPage = () => {
         isError,
     } = useQuery(["actor", { id }], getActorDetails);
 
-    if (isLoading) {
+    const { data: credits, isLoading: creditsLoading } = useQuery(
+        ["actorCredits", { id }],
+        getActorMovieCredits
+    );
+
+    if (isLoading || creditsLoading) {
         return <Spinner />;
     }
 
@@ -27,7 +33,7 @@ const ActorPage = () => {
 
     return (
         <>
-            <ActorDetails actor={actor} />
+            <ActorDetails actor={actor} credits={credits} />
         </>
     );
 };
