@@ -8,13 +8,10 @@ The repo contains a react movie web application for the purpose of assignment 1 
 
 ### Features.
 
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
+A bullet-point list of the **new features** you added to the Movies Fan app (and any modifications to existing features)
 
--   Feature 1
--   Feature 2
--   Feature 3
--   etc
--   etc
+-   Movie Cast list added into the movieDetails component (these are clickable, goes to each actors details page)
+-   Moive List in which an actor is featured in (actorDetailsPage)
 
 ## Setup requirements.
 
@@ -22,22 +19,17 @@ The repo contains a react movie web application for the purpose of assignment 1 
 
 ## API endpoints.
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.]
+List the **additional** TMDB endpoints used, giving the description and pathname for each one.
 
-e.g.
-
--   Discover list of movies - discover/movie
--   Movie details - movie/:id
--   Movie genres = /genre/movie/list
+-   Movie Credits (Cast) - https://api.themoviedb.org/3/movie/{movie_id}/credits
+-   Person Details (Bio, Image, Age) - https://api.themoviedb.org/3/person/{person_id}
+-   Actor Movie Credits (Featured in) - https://api.themoviedb.org/3/person/{person_id}/movie_credits
 
 ## Routing.
 
-[ List the __new routes__ supported by your app and state the associated page.]
+List the **new routes** supported by your app and state the associated page.
 
--   /blogs - displays all published blogs.
--   /blogs/:id - displays a particular blog.
--   /blogs/:id/comments - detail view of a particular blog and its comments.
--   etc.
+-   /actor/:id - Actor Details, (Bio, Age, List of Featured movies)
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
