@@ -24,12 +24,14 @@ List the **additional** TMDB endpoints used, giving the description and pathname
 -   Movie Credits (Cast) - https://api.themoviedb.org/3/movie/{movie_id}/credits
 -   Person Details (Bio, Image, Age) - https://api.themoviedb.org/3/person/{person_id}
 -   Actor Movie Credits (Featured in) - https://api.themoviedb.org/3/person/{person_id}/movie_credits
+-   Trending People (Actors, Directors, etc) - https://api.themoviedb.org/3/trending/person/{time_window}
 
 ## Routing.
 
 List the **new routes** supported by your app and state the associated page.
 
 -   /actor/:id - Actor Details, (Bio, Age, List of Featured movies)
+-   /trending/people - List of trending people on TMDB
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
