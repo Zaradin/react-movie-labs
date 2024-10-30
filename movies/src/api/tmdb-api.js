@@ -97,6 +97,23 @@ export const getUpcoming = () => {
         });
 };
 
+export const getTrendingPeople = () => {
+    return fetch(
+        `https://api.themoviedb.org/3/trending/person/day?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.message);
+                });
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
 export const getGenres = async () => {
     return fetch(
         "https://api.themoviedb.org/3/genre/movie/list?api_key=" +

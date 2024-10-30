@@ -27,7 +27,7 @@ const SiteHeader = ({ history }) => {
         { label: "Home", path: "/" },
         { label: "Favorites", path: "/movies/favorites" },
         { label: "Upcoming", path: "/movies/upcoming" },
-        { label: "Option 4", path: "/" },
+        { label: "Trending People", path: "/trending/people" },
     ];
 
     const handleMenuSelect = (pageURL) => {
@@ -49,7 +49,7 @@ const SiteHeader = ({ history }) => {
                         All you ever wanted to know about Movies!
                     </Typography>
                     {isMobile ? (
-                        <>  
+                        <>
                             <IconButton
                                 aria-label="menu"
                                 aria-controls="menu-appbar"

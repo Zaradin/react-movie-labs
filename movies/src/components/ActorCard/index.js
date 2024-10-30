@@ -26,16 +26,25 @@ const ActorCard = ({ actor }) => {
             />
 
             <CardContent>
-                <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    align="center"
-                >
-                    Played: {actor.character}
-                </Typography>
+                {actor.character ? (
+                    <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        align="center"
+                    >
+                        Played: {actor.character}
+                    </Typography>
+                ) : (
+                    <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        align="center"
+                    >
+                        Popularity: {actor.popularity.toFixed(1)}
+                    </Typography>
+                )}
             </CardContent>
         </Card>
     );
 };
-
 export default ActorCard;
