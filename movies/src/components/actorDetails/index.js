@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import MovieList from "../movieList";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites";
 import Grid from "@mui/material/Grid2";
+import img from "../../images/film-poster-placeholder.png";
 
 const ActorDetails = ({ actor, credits }) => {
     return (
@@ -13,7 +14,11 @@ const ActorDetails = ({ actor, credits }) => {
             <Card sx={{ maxWidth: 600, margin: "auto", mt: 3 }}>
                 <CardMedia
                     component="img"
-                    image={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                    image={
+                        actor.profile_path
+                            ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                            : img
+                    }
                     alt={actor.name}
                 />
                 <CardContent>
