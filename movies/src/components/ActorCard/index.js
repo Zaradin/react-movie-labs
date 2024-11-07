@@ -4,25 +4,27 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import actorImgPlaceholder from "../../images/actor-image-place-holder.png";
 
 const ActorCard = ({ actor }) => {
-    const imageUrl = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
-
     return (
-        <Card sx={{ maxWidth: 200, margin: 1 }}>
+        <Card>
             <CardHeader
                 title={actor.name}
                 sx={{
-                    textAlign: "center",
+                    textWrap: "nowrap",
                 }}
             />
 
             <CardMedia
+                sx={{ height: 500 }}
                 component="img"
-                height="300"
-                image={imageUrl}
+                image={
+                    actor.profile_path
+                        ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                        : actorImgPlaceholder
+                }
                 alt={actor.name}
-                sx={{ objectFit: "cover" }}
             />
 
             <CardContent>
