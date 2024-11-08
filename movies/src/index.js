@@ -17,6 +17,7 @@ import NowPlayingPage from "./pages/nowPlayingPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import SignUp from "./components/signUp";
 import SignIn from "./components/signIn";
+import ProtectedRoute from "./components/protectedRoute";
 
 const queryClient = new QueryClient({
     defaultOptions: {
