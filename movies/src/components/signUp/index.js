@@ -7,17 +7,17 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await signUp(email, password);
+        await signUp(email, password, username);
     };
 
     const handleLoginRedirect = () => {
@@ -45,6 +45,15 @@ const SignUp = () => {
                         gap: 2,
                     }}
                 >
+                    <TextField
+                        label="Username"
+                        type="text"
+                        variant="outlined"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        fullWidth
+                        required
+                    />
                     <TextField
                         label="Email"
                         type="email"
