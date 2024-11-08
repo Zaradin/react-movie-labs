@@ -14,6 +14,7 @@ A bullet-point list of the **new features** you added to the Movies Fan app (and
 -   Moive List in which an actor is featured in (actorDetailsPage)
 -   Sorting functionality in the Trending People page (Most to Least, Least to Most, Name A-Z, Name Z-A)
 -   Pagination to the Now Playing page
+-   Button to view similar movie recommendations in the movie details page
 
 ## Setup requirements.
 
@@ -28,6 +29,7 @@ List the **additional** TMDB endpoints used, giving the description and pathname
 -   Actor Movie Credits (Featured in) - https://api.themoviedb.org/3/person/{person_id}/movie_credits
 -   Trending People (Actors, Directors, etc) - https://api.themoviedb.org/3/trending/person/{time_window}
 -   Now showing in theatres - https://api.themoviedb.org/3/movie/now_playing&language=en-US&page=${page}
+-   Movie recommendations from movieid - https://api.themoviedb.org/3/movie/${movieId}/recommendations?&language=en-US
 
 ## Routing.
 
@@ -36,6 +38,7 @@ List the **new routes** supported by your app and state the associated page.
 -   /actor/:id - Actor Details, (Bio, Age, List of Featured movies)
 -   /trending/people - List of trending people on TMDB
 -   /movies/nowshowing - List of movies that are now showing in theatres
+-   /movie/:id/recommendations - List of movies that are similar to the movie in the url (:id)
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
