@@ -16,6 +16,7 @@ import TrendingPeoplePage from "./pages/trendingPeoplePage";
 import NowPlayingPage from "./pages/nowPlayingPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import SignUp from "./components/signUp";
+import SignIn from "./components/signIn";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -67,6 +68,7 @@ const App = () => {
                             element={<MovieRecommendationsPage />}
                         />
                         <Route path="/signup" element={<SignUp />} />
+                        <Route path="/signin" element={<SignIn />} />
                     </Routes>
                 </MoviesContextProvider>
             </BrowserRouter>

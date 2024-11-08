@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signUp } from "../../auth/auth";
+import { logIn } from "../../auth/auth";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -10,18 +10,18 @@ import Divider from "@mui/material/Divider";
 
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await signUp(email, password);
+        await logIn(email, password);
     };
 
-    const handleLoginRedirect = () => {
-        navigate("/signin");
+    const handleSignUpRedirect = () => {
+        navigate("/signup");
     };
 
     return (
@@ -33,7 +33,7 @@ const SignUp = () => {
                     gutterBottom
                     align="center"
                 >
-                    Sign Up
+                    Sign In
                 </Typography>
                 <Box
                     component="form"
@@ -70,16 +70,16 @@ const SignUp = () => {
                         size="large"
                         fullWidth
                     >
-                        Sign Up
+                        Sign In
                     </Button>
                     <Divider sx={{ my: 2 }}>Or</Divider>
                     <Button
-                        onClick={handleLoginRedirect}
+                        onClick={handleSignUpRedirect}
                         variant="outlined"
                         color="secondary"
                         fullWidth
                     >
-                        Already have an account? Log In
+                        Don’t have an account? Sign Up
                     </Button>
                 </Box>
             </Paper>
@@ -87,4 +87,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default SignIn;
