@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -12,12 +12,15 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { auth } from "../../firebase/firebase"; // Assuming Firebase is set up correctly
+import { onAuthStateChanged } from "firebase/auth";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [authAnchorEl, setAuthAnchorEl] = useState(null); // State for auth menu
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
     const open = Boolean(anchorEl);
     const authOpen = Boolean(authAnchorEl);
 
@@ -33,22 +36,47 @@ const SiteHeader = ({ history }) => {
         { label: "In Theatres", path: "/movies/nowshowing" },
     ];
 
+    // Handle menu item selection
     const handleMenuSelect = (pageURL) => {
         navigate(pageURL, { replace: true });
         setAnchorEl(null);
     };
 
+    // Handle auth menu item selection
     const handleAuthMenuSelect = (pageURL) => {
         navigate(pageURL, { replace: true });
         setAuthAnchorEl(null);
     };
 
+    // Open the main menu
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
+    // Open the authentication menu
     const handleAuthMenu = (event) => {
         setAuthAnchorEl(event.currentTarget);
+    };
+
+    // Firebase authentication state listener
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setIsAuthenticated(!!user); // Set authentication state based on user presence
+        });
+
+        return () => unsubscribe(); // Cleanup listener on component unmount
+    }, []);
+
+    // Handle sign out
+    const handleSignOut = () => {
+        auth.signOut()
+            .then(() => {
+                setIsAuthenticated(false); // Update state to logged out
+                navigate("/"); // Redirect to home page
+            })
+            .catch((error) => {
+                console.error("Sign out error: ", error);
+            });
     };
 
     return (
@@ -135,16 +163,37 @@ const SiteHeader = ({ history }) => {
                         open={authOpen}
                         onClose={() => setAuthAnchorEl(null)}
                     >
-                        <MenuItem
-                            onClick={() => handleAuthMenuSelect("/login")}
-                        >
-                            Sign In
-                        </MenuItem>
-                        <MenuItem
-                            onClick={() => handleAuthMenuSelect("/signup")}
-                        >
-                            Sign Up
-                        </MenuItem>
+                        {isAuthenticated ? (
+                            <>
+                                <MenuItem
+                                    onClick={() =>
+                                        handleAuthMenuSelect("/account")
+                                    }
+                                >
+                                    View Account
+                                </MenuItem>
+                                <MenuItem onClick={handleSignOut}>
+                                    Sign Out
+                                </MenuItem>
+                            </>
+                        ) : (
+                            <>
+                                <MenuItem
+                                    onClick={() =>
+                                        handleAuthMenuSelect("/login")
+                                    }
+                                >
+                                    Sign In
+                                </MenuItem>
+                                <MenuItem
+                                    onClick={() =>
+                                        handleAuthMenuSelect("/signup")
+                                    }
+                                >
+                                    Sign Up
+                                </MenuItem>
+                            </>
+                        )}
                     </Menu>
                 </Toolbar>
             </AppBar>
