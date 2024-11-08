@@ -17,7 +17,12 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await logIn(email, password);
+        try {
+            await logIn(email, password);
+            navigate("/"); // go to homepage after successful login
+        } catch (error) {
+            console.error("Login failed", error);
+        }
     };
 
     const handleSignUpRedirect = () => {

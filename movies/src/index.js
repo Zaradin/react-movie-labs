@@ -68,7 +68,7 @@ const App = () => {
                             element={<MovieRecommendationsPage />}
                         />
                         <Route path="/signup" element={<SignUp />} />
-                        <Route path="/signin" element={<SignIn />} />
+                        <Route path="/login" element={<SignIn />} />
                     </Routes>
                 </MoviesContextProvider>
             </BrowserRouter>

@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
@@ -16,11 +17,12 @@ const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [authAnchorEl, setAuthAnchorEl] = useState(null); // State for auth menu
     const open = Boolean(anchorEl);
+    const authOpen = Boolean(authAnchorEl);
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
     const navigate = useNavigate();
 
     const menuOptions = [
@@ -33,10 +35,20 @@ const SiteHeader = ({ history }) => {
 
     const handleMenuSelect = (pageURL) => {
         navigate(pageURL, { replace: true });
+        setAnchorEl(null);
+    };
+
+    const handleAuthMenuSelect = (pageURL) => {
+        navigate(pageURL, { replace: true });
+        setAuthAnchorEl(null);
     };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleAuthMenu = (event) => {
+        setAuthAnchorEl(event.currentTarget);
     };
 
     return (
@@ -100,6 +112,40 @@ const SiteHeader = ({ history }) => {
                             ))}
                         </>
                     )}
+                    {/* Auth Button with Dropdown */}
+                    <Button
+                        color="inherit"
+                        startIcon={<AccountCircle />}
+                        onClick={handleAuthMenu}
+                    >
+                        Account
+                    </Button>
+                    <Menu
+                        id="auth-menu"
+                        anchorEl={authAnchorEl}
+                        anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        open={authOpen}
+                        onClose={() => setAuthAnchorEl(null)}
+                    >
+                        <MenuItem
+                            onClick={() => handleAuthMenuSelect("/login")}
+                        >
+                            Sign In
+                        </MenuItem>
+                        <MenuItem
+                            onClick={() => handleAuthMenuSelect("/signup")}
+                        >
+                            Sign Up
+                        </MenuItem>
+                    </Menu>
                 </Toolbar>
             </AppBar>
             <Offset />

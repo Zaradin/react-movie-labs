@@ -21,7 +21,7 @@ const SignUp = () => {
     };
 
     const handleLoginRedirect = () => {
-        navigate("/signin");
+        navigate("/login");
     };
 
     return (
