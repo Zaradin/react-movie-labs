@@ -48,11 +48,9 @@ export const getMovieCast = (args) => {
         });
 };
 
-export const getNowPlayingMovies = (args) => {
-    //const [, idPart] = args.queryKey;
-    //const { id } = idPart;
+export const getNowPlayingMovies = (page = 1) => {
     return fetch(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page}`
     )
         .then((response) => {
             if (!response.ok) {
