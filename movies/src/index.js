@@ -15,6 +15,7 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import TrendingPeoplePage from "./pages/trendingPeoplePage";
 import NowPlayingPage from "./pages/nowPlayingPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
+import SignUp from "./components/signUp";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -65,6 +66,7 @@ const App = () => {
                             path="/movie/:movieId/recommendations"
                             element={<MovieRecommendationsPage />}
                         />
+                        <Route path="/signup" element={<SignUp />} />
                     </Routes>
                 </MoviesContextProvider>
             </BrowserRouter>
