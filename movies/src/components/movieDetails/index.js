@@ -11,7 +11,8 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import ActorCard from "../actorCard";
 import Grid2 from "@mui/material/Grid2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const root = {
     display: "flex",
@@ -26,6 +27,8 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie, cast }) => {
     // Don't miss this!
     const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -70,6 +73,15 @@ const MovieDetails = ({ movie, cast }) => {
                     </li>
                 ))}
             </Paper>
+
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate(`/movie/${movie.id}/recommendations`)} // Navigate to recommendations page
+                sx={{ marginTop: "1em" }}
+            >
+                View Recommendations That are Similar
+            </Button>
             <Fab
                 color="secondary"
                 variant="extended"
