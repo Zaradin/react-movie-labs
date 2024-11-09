@@ -17,6 +17,7 @@ import NowPlayingPage from "./pages/nowPlayingPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import SignUp from "./components/signUp";
 import SignIn from "./components/signIn";
+import AccountDetailsPage from "./pages/acountDetailsPage";
 import ProtectedRoute from "./components/protectedRoute";
 
 const queryClient = new QueryClient({
@@ -70,6 +71,14 @@ const App = () => {
                         />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<SignIn />} />
+                        <Route
+                            path="/account"
+                            element={
+                                <ProtectedRoute>
+                                    <AccountDetailsPage />
+                                </ProtectedRoute>
+                            }
+                        />
                     </Routes>
                 </MoviesContextProvider>
             </BrowserRouter>
