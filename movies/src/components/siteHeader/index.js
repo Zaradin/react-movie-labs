@@ -163,37 +163,41 @@ const SiteHeader = ({ history }) => {
                         open={authOpen}
                         onClose={() => setAuthAnchorEl(null)}
                     >
-                        {isAuthenticated ? (
-                            <>
-                                <MenuItem
-                                    onClick={() =>
-                                        handleAuthMenuSelect("/account")
-                                    }
-                                >
-                                    View Account
-                                </MenuItem>
-                                <MenuItem onClick={handleSignOut}>
-                                    Sign Out
-                                </MenuItem>
-                            </>
-                        ) : (
-                            <>
-                                <MenuItem
-                                    onClick={() =>
-                                        handleAuthMenuSelect("/login")
-                                    }
-                                >
-                                    Sign In
-                                </MenuItem>
-                                <MenuItem
-                                    onClick={() =>
-                                        handleAuthMenuSelect("/signup")
-                                    }
-                                >
-                                    Sign Up
-                                </MenuItem>
-                            </>
-                        )}
+                        {isAuthenticated
+                            ? [
+                                  <MenuItem
+                                      key="view-account"
+                                      onClick={() =>
+                                          handleAuthMenuSelect("/account")
+                                      }
+                                  >
+                                      View Account
+                                  </MenuItem>,
+                                  <MenuItem
+                                      key="sign-out"
+                                      onClick={handleSignOut}
+                                  >
+                                      Sign Out
+                                  </MenuItem>,
+                              ]
+                            : [
+                                  <MenuItem
+                                      key="sign-in"
+                                      onClick={() =>
+                                          handleAuthMenuSelect("/login")
+                                      }
+                                  >
+                                      Sign In
+                                  </MenuItem>,
+                                  <MenuItem
+                                      key="sign-up"
+                                      onClick={() =>
+                                          handleAuthMenuSelect("/signup")
+                                      }
+                                  >
+                                      Sign Up
+                                  </MenuItem>,
+                              ]}
                     </Menu>
                 </Toolbar>
             </AppBar>
