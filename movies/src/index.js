@@ -19,6 +19,7 @@ import SignUp from "./components/signUp";
 import SignIn from "./components/signIn";
 import AccountDetailsPage from "./pages/acountDetailsPage";
 import ProtectedRoute from "./components/protectedRoute";
+import SearchPage from "./pages/searchPage";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -61,6 +62,7 @@ const App = () => {
                             path="/trending/people"
                             element={<TrendingPeoplePage />}
                         />
+                        <Route path="/search" element={<SearchPage />} />
                         <Route
                             path="/movies/nowshowing"
                             element={<NowPlayingPage />}

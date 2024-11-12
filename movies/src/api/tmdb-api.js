@@ -31,25 +31,26 @@ export const getMovie = (args) => {
         });
 };
 
-export const getMovieByTitle = (args) => {
-    const [, titlePart] = args.queryKey;
-    const { title } = titlePart;
+export const getMovieByTitle = async (title) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=${
+                process.env.REACT_APP_TMDB_KEY
+            }&query=${encodeURIComponent(title)}`
+        );
 
-    return fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${
-            process.env.REACT_APP_TMDB_KEY
-        }&query=${encodeURIComponent(title)}`
-    )
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.json().message);
-            }
-            return response.json();
-        })
-        .then((data) => data.results)
-        .catch((error) => {
-            throw error;
-        });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message);
+        }
+
+        const data = await response.json();
+
+        return data.results;
+    } catch (error) {
+        console.error("Error fetching search results:", error);
+        return [];
+    }
 };
 
 export const getMovieRecommendations = (movieId) => {
