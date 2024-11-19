@@ -1,24 +1,29 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Container } from "@mui/material";
-import { Paper } from "@mui/material";
-import { Typography } from "@mui/material";
-import { Avatar } from "@mui/material";
-import { Box } from "@mui/material";
-import { Card } from "@mui/material";
-import { CardMedia } from "@mui/material";
-import { CardContent } from "@mui/material";
-import { Grid } from "@mui/material";
-import { auth } from "../firebase/firebase";
+import {
+    Container,
+    Paper,
+    Typography,
+    Avatar,
+    Box,
+    FormControlLabel,
+    Switch,
+    Grid,
+    Card,
+    CardMedia,
+    CardContent,
+} from "@mui/material";
 import { MoviesContext } from "../contexts/moviesContext";
+import { ThemeContext } from "../contexts/themeContext";
 import { getMovie } from "../api/tmdb-api";
+import { auth } from "../firebase/firebase";
 
 const AccountDetailsPage = () => {
     const [user, setUser] = useState(null);
     const { favorites } = useContext(MoviesContext);
     const [movieDetails, setMovieDetails] = useState([]);
+    const { mode, toggleTheme } = useContext(ThemeContext); // Access mode from context
 
     useEffect(() => {
-        // Firebase listener to get the current user
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             setUser(currentUser);
         });
@@ -51,17 +56,15 @@ const AccountDetailsPage = () => {
                         sx={{ padding: 3, textAlign: "center" }}
                     >
                         <Box display="flex" justifyContent="center" mb={2}>
-                            {
-                                <Avatar
-                                    sx={{
-                                        bgcolor: "primary.main",
-                                        width: 100,
-                                        height: 100,
-                                    }}
-                                >
-                                    {userNameInitial}
-                                </Avatar>
-                            }
+                            <Avatar
+                                sx={{
+                                    bgcolor: "primary.main",
+                                    width: 100,
+                                    height: 100,
+                                }}
+                            >
+                                {userNameInitial}
+                            </Avatar>
                         </Box>
                         <Typography variant="h6">
                             {user?.displayName || "No Username"}
@@ -72,6 +75,16 @@ const AccountDetailsPage = () => {
                         <Typography variant="body2" color="textSecondary">
                             Signed up on: {user?.metadata.creationTime || "N/A"}
                         </Typography>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={mode === "dark"}
+                                    onChange={toggleTheme}
+                                />
+                            }
+                            label={mode === "dark" ? "Dark Mode" : "Light Mode"}
+                            sx={{ mt: 2 }}
+                        />
                     </Paper>
                 </Grid>
 
@@ -99,9 +112,7 @@ const AccountDetailsPage = () => {
                                                     height="300"
                                                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                                     alt={movie.title}
-                                                    sx={{
-                                                        height: 300,
-                                                    }}
+                                                    sx={{ height: 300 }}
                                                 />
                                                 <CardContent>
                                                     <Typography
