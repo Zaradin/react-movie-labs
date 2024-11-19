@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import {
-    Container,
-    Paper,
-    Typography,
-    Avatar,
-    Box,
-    FormControlLabel,
-    Switch,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
-} from "@mui/material";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
 import { MoviesContext } from "../contexts/moviesContext";
 import { ThemeContext } from "../contexts/themeContext";
 import { getMovie } from "../api/tmdb-api";
