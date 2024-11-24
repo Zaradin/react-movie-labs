@@ -21,6 +21,7 @@ import AccountDetailsPage from "./pages/acountDetailsPage";
 import ProtectedRoute from "./components/protectedRoute";
 import SearchPage from "./pages/searchPage";
 import ThemeContextProvider from "./contexts/themeContext";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -37,6 +38,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
             <ThemeContextProvider>
                 <BrowserRouter>
+                    <Toaster position="bottom-right" reverseOrder={false} />
                     <SiteHeader />
                     <MoviesContextProvider>
                         <Routes>

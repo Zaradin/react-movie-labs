@@ -5,9 +5,6 @@ import { getActorDetails } from "../api/tmdb-api";
 import { getActorMovieCredits } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import ActorDetails from "../components/actorDetails";
 
 const ActorPage = () => {

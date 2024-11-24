@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -22,9 +23,15 @@ const SignUp = () => {
         try {
             await signUp(email, password, username);
             navigate("/login");
+            toast.success("Account created successfully! 🎉", {
+                duration: 2000,
+            });
         } catch (error) {
             console.error("Sign-up failed:", error.message);
             setError(error.message);
+            toast.error("Signup failed please try again! ", {
+                duration: 2000,
+            });
         }
     };
 

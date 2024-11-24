@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
+import toast from "react-hot-toast";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,9 +23,15 @@ const SignIn = () => {
         try {
             await logIn(email, password);
             navigate("/");
+            toast.success("Logged in successfully! 🎉", {
+                duration: 2000,
+            });
         } catch (error) {
             console.error("Login failed:", error.message);
             setError(error.message);
+            toast.error("Login failed please try again! ", {
+                duration: 2000,
+            });
         }
     };
 
