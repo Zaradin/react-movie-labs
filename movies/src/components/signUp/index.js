@@ -13,11 +13,19 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await signUp(email, password, username);
+        setError("");
+        try {
+            await signUp(email, password, username);
+            navigate("/login");
+        } catch (error) {
+            console.error("Sign-up failed:", error.message);
+            setError(error.message);
+        }
     };
 
     const handleLoginRedirect = () => {
@@ -45,6 +53,16 @@ const SignUp = () => {
                         gap: 2,
                     }}
                 >
+                    {error && (
+                        <Typography
+                            color="error"
+                            variant="body1"
+                            align="center"
+                            sx={{ mb: 2 }}
+                        >
+                            {error}
+                        </Typography>
+                    )}
                     <TextField
                         label="Username"
                         type="text"

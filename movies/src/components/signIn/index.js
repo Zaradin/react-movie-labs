@@ -13,15 +13,18 @@ import { useNavigate } from "react-router-dom";
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
         try {
             await logIn(email, password);
-            navigate("/"); // go to homepage after successful login
+            navigate("/");
         } catch (error) {
-            console.error("Login failed", error);
+            console.error("Login failed:", error.message);
+            setError(error.message);
         }
     };
 
@@ -50,6 +53,16 @@ const SignIn = () => {
                         gap: 2,
                     }}
                 >
+                    {error && (
+                        <Typography
+                            color="error"
+                            variant="body1"
+                            align="center"
+                            sx={{ mb: 2 }}
+                        >
+                            {error}
+                        </Typography>
+                    )}
                     <TextField
                         label="Email"
                         type="email"
