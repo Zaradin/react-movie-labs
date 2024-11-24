@@ -48,6 +48,10 @@ export default function FilterMoviesCard(props) {
         handleChange(e, "genre", e.target.value);
     };
 
+    const handleSortChange = (e) => {
+        handleChange(e, "popularity", e.target.value); // Handle popularity sorting
+    };
+
     return (
         <Card
             sx={{
@@ -85,6 +89,18 @@ export default function FilterMoviesCard(props) {
                                 </MenuItem>
                             );
                         })}
+                    </Select>
+                </FormControl>
+                <FormControl sx={{ ...formControl }}>
+                    <InputLabel id="popularity-label">Most Popular</InputLabel>
+                    <Select
+                        labelId="popularity-label"
+                        id="popularity-select"
+                        value={props.popularityFilter}
+                        onChange={handleSortChange}
+                    >
+                        <MenuItem value="desc">Most Popular</MenuItem>
+                        <MenuItem value="asc">Least Popular</MenuItem>
                     </Select>
                 </FormControl>
             </CardContent>
